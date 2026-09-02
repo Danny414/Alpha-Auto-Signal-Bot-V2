@@ -1,0 +1,32 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "python auto_signal_bot.py"
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 5
+
+[[deploy.environmentVariables]]
+name = "AUTO_SIGNAL_BOT_TOKEN"
+description = "Telegram bot token from @BotFather (for the Alpha Signal Bot)"
+required = true
+
+[[deploy.environmentVariables]]
+name = "AUTO_SIGNAL_CHAT_ID"
+description = "Telegram channel or chat ID where signals are posted (negative number for channels, e.g. -100xxxxxxxxxx)"
+required = true
+
+[[deploy.environmentVariables]]
+name = "GEMINI_API_KEY"
+description = "Google Gemini API key — used as secondary AI scorer"
+required = false
+
+[[deploy.environmentVariables]]
+name = "DEEPSEEK_API_KEY"
+description = "DeepSeek API key — used as primary AI scorer"
+required = false
+
+[[deploy.environmentVariables]]
+name = "ETHERSCAN_API_KEY"
+description = "Etherscan API key — improves onchain data quality (optional)"
+required = false
